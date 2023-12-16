@@ -1,0 +1,185 @@
+@import '../../style/themes/default';
+@import '../../style/mixins/index';
+
+@tooltip-prefix-cls: ~'@{c7n-prefix}-tooltip';
+
+// Base class
+.@{tooltip-prefix-cls} {
+  .reset-component;
+  position: absolute;
+  z-index: @zindex-tooltip;
+  display: block;
+  font-size: @tooltip-font-size;
+  line-height: @tooltip-line-height;
+  visibility: visible;
+
+  &-hidden {
+    display: none;
+  }
+
+  &-placement-top,
+  &-placement-topLeft,
+  &-placement-topRight {
+    padding-bottom: @tooltip-distance;
+  }
+
+  &-placement-right,
+  &-placement-rightTop,
+  &-placement-rightBottom {
+    padding-left: @tooltip-distance;
+  }
+
+  &-placement-bottom,
+  &-placement-bottomLeft,
+  &-placement-bottomRight {
+    padding-top: @tooltip-distance;
+  }
+
+  &-placement-left,
+  &-placement-leftTop,
+  &-placement-leftBottom {
+    padding-right: @tooltip-distance;
+  }
+
+  // Wrapper for the tooltip content
+  &-inner {
+    min-width: @tooltip-min-width;
+    max-width: @tooltip-max-width;
+    min-height: @tooltip-min-height;
+    padding: @tooltip-padding;
+    color: @tooltip-color;
+    text-align: left;
+    text-decoration: none;
+    word-wrap: break-word;
+    background-color: @tooltip-bg;
+    border-radius: @tooltip-border-radius;
+    box-shadow: @tooltip-box-shadow;
+
+    &-dark {
+      a,
+      a:hover {
+        color: @tooltip-link-color-dark;
+      }
+    }
+
+    .@{c7n-pro-prefix}-output {
+      line-height: unset;
+    }
+
+
+    &-light {
+      color: @tooltip-color-light;
+      background-color: @tooltip-bg-light;
+      box-shadow: @tooltip-box-shadow-light;
+    }
+  }
+
+  // Arrows
+  &-arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+  }
+
+  &-placement-top &-arrow,
+  &-placement-topLeft &-arrow,
+  &-placement-topRight &-arrow {
+    bottom: calc(@tooltip-distance - @tooltip-arrow-width);
+    border-width: @tooltip-arrow-width @tooltip-arrow-width 0;
+    border-top-color: @tooltip-arrow-color;
+
+    &-light {
+      border-top-color: @tooltip-arrow-color-light;
+    }
+  }
+
+  &-placement-top &-arrow {
+    left: 50%;
+    margin-left: calc(-1 * @tooltip-arrow-width);
+  }
+
+  &-placement-topLeft &-arrow {
+    left: 0.08rem;
+  }
+
+  &-placement-topRight &-arrow {
+    right: 0.08rem;
+  }
+
+  &-placement-right &-arrow,
+  &-placement-rightTop &-arrow,
+  &-placement-rightBottom &-arrow {
+    left: calc(@tooltip-distance - @tooltip-arrow-width);
+    border-width: @tooltip-arrow-width @tooltip-arrow-width @tooltip-arrow-width 0;
+    border-right-color: @tooltip-arrow-color;
+
+    &-light {
+      border-right-color: @tooltip-arrow-color-light;
+    }
+  }
+
+  &-placement-right &-arrow {
+    top: 50%;
+    margin-top: calc(-1 * @tooltip-arrow-width);
+  }
+
+  &-placement-rightTop &-arrow {
+    top: 0.08rem;
+  }
+
+  &-placement-rightBottom &-arrow {
+    bottom: 0.08rem;
+  }
+
+  &-placement-left &-arrow,
+  &-placement-leftTop &-arrow,
+  &-placement-leftBottom &-arrow {
+    right: calc(@tooltip-distance - @tooltip-arrow-width);
+    border-width: @tooltip-arrow-width 0 @tooltip-arrow-width @tooltip-arrow-width;
+    border-left-color: @tooltip-arrow-color;
+
+    &-light {
+      border-left-color: @tooltip-arrow-color-light;
+    }
+  }
+
+  &-placement-left &-arrow {
+    top: 50%;
+    margin-top: calc(-1 * @tooltip-arrow-width);
+  }
+
+  &-placement-leftTop &-arrow {
+    top: 0.08rem;
+  }
+
+  &-placement-leftBottom &-arrow {
+    bottom: 0.08rem;
+  }
+
+  &-placement-bottom &-arrow,
+  &-placement-bottomLeft &-arrow,
+  &-placement-bottomRight &-arrow {
+    top: calc(@tooltip-distance - @tooltip-arrow-width);
+    border-width: 0 @tooltip-arrow-width @tooltip-arrow-width;
+    border-bottom-color: @tooltip-arrow-color;
+
+    &-light {
+      border-bottom-color: @tooltip-arrow-color-light;
+    }
+  }
+
+  &-placement-bottom &-arrow {
+    left: 50%;
+    margin-left: calc(-1 * @tooltip-arrow-width);
+  }
+
+  &-placement-bottomLeft &-arrow {
+    left: 0.08rem;
+  }
+
+  &-placement-bottomRight &-arrow {
+    right: 0.08rem;
+  }
+}

@@ -1,0 +1,27 @@
+@import '../../../components/style/themes/default';
+@import '../../../components/style/mixins/index';
+@import 'mixin';
+
+@pro-rate-prefix-cls: ~'@{c7n-pro-prefix}-rate';
+
+.@{pro-rate-prefix-cls} {
+  .rate-basic;
+
+  &-wrapper.@{field-prefix-cls} {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  &-float-label {
+    .@{field-prefix-cls}-label {
+      vertical-align: middle;
+    }
+
+    .icon-help {
+      margin-left: 0.05rem;
+      color: @field-icon-help-color;
+      font-size: @field-icon-help-font-size;
+    }
+  }
+}

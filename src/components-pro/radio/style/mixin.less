@@ -1,0 +1,66 @@
+@import '../../field/style/mixin';
+
+.radio-btn() {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  cursor: inherit;
+  opacity: 0;
+
+  &-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    line-height: @radio-line-height;
+    white-space: @radio-label-white-space;
+    vertical-align: middle;
+    outline: none;
+    cursor: pointer;
+  }
+
+  &-invalid &-inner {
+    border-color: @error-color;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+  &-disabled {
+    cursor: not-allowed;
+  }
+
+  .float-label;
+  &-float-label {
+    padding-top: 0.07rem;
+  }
+
+}
+
+.radio-invalid() {
+  .@{pro-radio-prefix-cls}.@{pro-radio-prefix-cls}:hover:not(:checked) + .@{pro-radio-prefix-cls}-inner,
+  .@{pro-radio-prefix-cls}-wrapper:hover .@{pro-radio-prefix-cls}.@{pro-radio-prefix-cls}:not(:checked) + .@{pro-radio-prefix-cls}-inner,
+  .@{pro-radio-prefix-cls}.@{pro-radio-prefix-cls}:focus:not(:checked) + .@{pro-radio-prefix-cls}-inner {
+      border-color: @error-color;
+
+    &::before {
+      background-color: @error-color;
+    }
+  }
+
+  .@{pro-radio-prefix-cls}:checked + .@{pro-radio-prefix-cls}-inner {
+    border-color: @error-color;
+    &::before {
+      background-color: @error-color;
+    }
+  }
+
+  .@{pro-radio-prefix-cls}.@{pro-radio-prefix-cls}:focus + .@{pro-radio-prefix-cls}-inner {
+    box-shadow: none;
+  }
+}

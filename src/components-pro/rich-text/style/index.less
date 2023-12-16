@@ -1,0 +1,72 @@
+@import '../../../components/style/themes/default';
+@import '../../../components/style/mixins/index';
+@import '../../text-field/style/mixin';
+
+.ql-editor.ql-blank::before {
+  font-style: normal !important;
+}
+
+.@{c7n-pro-prefix}-rich-text {
+  .input;
+
+  height: 100%;
+  padding: 0;
+
+  &-quill {
+    display: flex;
+    flex-direction: column;
+    .ql-container {
+      border: none !important;
+    }
+  }
+
+  &-toolbar, .ql-toolbar {
+    background-color: #fff;
+    border-width: 0 0 1px 0 !important;
+
+    + .ql-container {
+      flex: 1;
+      height: auto;
+      overflow: auto;
+    }
+  }
+
+  &-wrapper {
+    width: 100%;
+    &.@{c7n-pro-prefix}-rich-text-invalid {
+      .@{c7n-pro-prefix}-rich-text {
+        color: @error-color;
+        border-color: @input-error-border-color;
+        opacity: 1;
+      }
+    }
+
+    &.@{c7n-pro-prefix}-rich-text-float-label .@{c7n-pro-prefix}-rich-text {
+      padding-right: 0;
+    }
+
+    &.@{c7n-pro-prefix}-rich-text-float-label:not(.@{c7n-pro-prefix}-rich-text-multiple) .@{c7n-pro-prefix}-rich-text {
+      height: 100%;
+    }
+  }
+
+  &-float-label {
+    &-toolbar, .ql-toolbar {
+      background-color: transparent;
+    }
+  }
+
+  &-float-label&-empty .@{c7n-pro-prefix}-field-label-wrapper {
+    font-size: @float-label-font-size;
+    background-color: @component-background;
+    transform: scaleX(0.8);
+  }
+  &-float-label&-empty .@{c7n-pro-prefix}-field-label {
+    // height: @float-label-active-height;
+    padding: @float-label-active-padding;
+    line-height: @float-label-active-height;
+    background-color: @float-label-active-bg;
+    transform: scaleY(0.8);
+  }
+}
+

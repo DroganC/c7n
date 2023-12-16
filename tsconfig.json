@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "declaration": true,
+    "skipLibCheck": true,
+    "noImplicitAny": false,
+    "baseUrl": "./",
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "jsx": "react",
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
+    "noEmitHelpers": true,
+    "importHelpers": true,
+    "paths": {
+      "choerodon-ui/lib/*": [
+        "src/components/*"
+      ],
+      "choerodon-ui/pro/lib/*": [
+        "src/components-pro/*"
+      ],
+      "choerodon-ui/dataset/*": [
+        "src/components-dataset/*"
+      ],
+      "choerodon-ui/shared/*": [
+        "src/components-shared/*"
+      ],
+      "choerodon-ui/dataset": [
+        "src/components-dataset/index"
+      ],
+      "choerodon-ui/shared": [
+        "src/components-shared/index"
+      ]
+    }
+  },
+}

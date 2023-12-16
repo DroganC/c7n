@@ -1,0 +1,94 @@
+@import '../../style/themes/default';
+@import '../../style/mixins/index';
+
+@timeline-prefix-cls: ~'@{c7n-prefix}-timeline';
+
+.@{timeline-prefix-cls} {
+  .reset-component;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  &-item {
+    position: relative;
+    margin: 0;
+    padding: @timeline-item-padding;
+    font-size: @font-size-base;
+    list-style: none;
+
+    &-tail {
+      position: absolute;
+      top: @timeline-item-tail-top;
+      left: @timeline-item-tail-left;
+      height: 100%;
+      border-left: 0.02rem solid @timeline-color;
+    }
+
+    &-pending &-head {
+      font-size: @font-size-sm;
+    }
+
+    &-pending &-tail {
+      display: none;
+    }
+
+    &-head {
+      position: absolute;
+      width: @timeline-item-header-size;
+      height: @timeline-item-header-size;
+      background-color: @component-background;
+      border: 0.02rem solid transparent;
+      border-radius: 1rem;
+
+      &-blue {
+        color: @primary-color;
+        border-color: @primary-color;
+      }
+      &-red {
+        color: @error-color;
+        border-color: @error-color;
+      }
+      &-green {
+        color: @success-color;
+        border-color: @success-color;
+      }
+    }
+
+    &-head-custom {
+      position: absolute;
+      top: 0.05rem;
+      left: 0.05rem;
+      width: auto;
+      height: auto;
+      margin-top: 0;
+      padding: 0.03rem 0.01rem;
+      line-height: 1;
+      text-align: center;
+      border: 0;
+      border-radius: 0;
+      transform: translate(-50%, -50%);
+    }
+
+    &-content {
+      position: relative;
+      top: @timeline-item-content-top;
+      padding: @timeline-item-content-padding;
+      color: @timeline-item-content-color;
+      line-height: @timeline-item-content-line-height;
+    }
+
+    &-last {
+      .@{timeline-prefix-cls}-item-tail {
+        display: none;
+        border-left: 0.02rem dotted @timeline-color;
+      }
+      .@{timeline-prefix-cls}-item-content {
+        min-height: @timeline-item-last-content-min-height;
+      }
+    }
+  }
+
+  &&-pending &-item-last &-item-tail {
+    display: block;
+  }
+}

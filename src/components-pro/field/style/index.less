@@ -1,0 +1,223 @@
+@import '../../../components/style/themes/default';
+@import '../../../components/style/mixins/index';
+
+@field-prefix-cls: ~'@{c7n-pro-prefix}-field';
+
+.@{field-prefix-cls} {
+  width: 100%;
+  &,
+  &.@{c7n-prefix}-row {
+    display: inline-block;
+  }
+
+  &-row &-label,
+  &-label label > span,
+  &-label-vertical {
+    overflow: hidden;
+    font-weight: @label-font-weight;
+    line-height: @label-line-height;
+    white-space: @label-white-space;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+  }
+
+  &-label {
+    padding: @label-wrapper-padding;
+    padding-top: 0;
+    padding-bottom: 0;
+
+    &-right {
+      text-align: right;
+    }
+
+    &-center {
+      text-align: center;
+    }
+
+    &&-left label > span {
+      flex: unset;
+    }
+  }
+
+  label&-label,
+  &-label label {
+    display: flex;
+    align-items: baseline;
+    padding: @label-wrapper-padding;
+    padding-right: 0;
+    padding-left: 0;
+    color: @label-color-horizontal;
+
+    > span {
+      flex: 1;
+    }
+  }
+
+  &-wrapper {
+    padding: @form-item-wrapper-padding;
+
+    .@{c7n-pro-prefix}-checkbox-wrapper, .@{c7n-pro-prefix}-switch-wrapper {
+      height: @input-height-base;
+    }
+
+    .@{c7n-pro-prefix}-radio-wrapper {
+      min-height: @radio-height;
+    }
+
+    .@{c7n-pro-prefix}-range-wrapper {
+      display: inline-flex;
+      align-items: center;
+    }
+  }
+
+  label&-label-vertical {
+    display: inline-block;
+    padding: @label-wrapper-padding;
+    padding-top: @label-vertical-wrapper-padding-vertical;
+    padding-bottom: @label-vertical-wrapper-padding-vertical;
+    color: @label-color-vertical;
+    line-height: @label-line-height;
+    direction: ltr;
+    text-align: left;
+
+    & + .@{field-prefix-cls}-wrapper {
+      padding-top: 0;
+    }
+  }
+
+  &-row &-label-required-mark-right,
+  &-label-required-mark-right label {
+    > span {
+      position: relative;
+      padding-right: 0.12rem;
+    }
+  }
+
+  &-row &-label-required-mark-right > span::after,
+  &-label-required-mark-right label > span::after {
+    position: absolute;
+    top: 50%;
+    display: inline-block;
+    color: @label-required-color;
+    font-family: @font-family-required-symbol;
+    line-height: 1;
+    transform: translateY(-50%);
+    content: ' ';
+  }
+
+  &-row &-required&-label-required-mark-right > span::after,
+  &-required&-label-required-mark-right label > span::after {
+    right: 0.02rem;
+    width: 0.08rem;
+    content: '*';
+  }
+
+  &-row &-label&-label-useColon::after,
+  &-label&-label-useColon label::after {
+    position: relative;
+    top: -0.01rem;
+    display: inline-block;
+    width: 0;
+    margin-left: 0.02rem;
+    color: @label-colon-color;
+    vertical-align: baseline;
+    content: ':';
+  }
+
+  &-row &-label&-label-useColon::after {
+    width: 0.04rem;
+  }
+
+  &-label-help {
+    .icon-help {
+      position: relative;
+      top: 0.02rem;
+      margin-left: 0.02rem;
+      color: @field-icon-help-color;
+      font-size: @field-icon-help-font-size;
+    }
+
+    & + .icon-help {
+      margin-left: 0.02rem;
+      color: @field-icon-help-color;
+      font-size: @field-icon-help-font-size;
+
+      & + .@{field-prefix-cls}-wrapper {
+        padding-top: 0;
+      }
+    }
+  }
+
+  &-label-grid&-label-help {
+    .icon-help {
+      top: -0.015rem;
+    }
+  }
+
+  &-label-vertical&-label&-label-useColon {
+    width: auto;
+  }
+
+  &-row &-required&-label-required-mark-left::before,
+  &-label-vertical&-required&-label::before,
+  &-required&-label&-label-required-mark-left label > span::before {
+    display: inline-block;
+    margin-right: 0.04rem;
+    color: @label-required-color;
+    font-size: 0.14rem;
+    line-height: 1;
+    content: '*';
+  }
+
+  &-help {
+    color: @field-help-color;
+    font-size: @font-size-sm;
+    // 帮助信息相对输入框应该另起一行
+    // display: inline-block;
+    word-break: break-all;
+  }
+
+  &-output {
+    padding-top: @label-output-wrapper-padding-vertical;
+    padding-bottom: @label-output-wrapper-padding-vertical;
+  }
+
+  &-label-output label {
+    padding-top: @form-item-wrapper-output-padding-vertical;
+    padding-bottom: @form-item-wrapper-output-padding-vertical;
+  }
+
+  &-output-mix, &-label-output-mix label {
+    padding: @label-wrapper-padding;
+  }
+
+  &-label-output-mix label {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  &-row&-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+
+  &-col {
+    position: relative;
+    flex-grow: 0;
+    max-width: 100%;
+    min-height: 1px;
+
+    &-control {
+      flex: 1;
+    }
+
+    & .@{field-prefix-cls}-wrapper {
+      padding: @form-item-wrapper-padding;
+    }
+  }
+
+  &-col &-label {
+    display: inline-block;
+  }
+}

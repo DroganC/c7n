@@ -1,0 +1,313 @@
+@import '../../style/themes/default';
+@import '../../style/mixins/index';
+
+@steps-prefix-cls: ~'@{c7n-prefix}-steps';
+
+.@{steps-prefix-cls} {
+  .reset-component;
+  display: flex;
+  width: 100%;
+  font-size: 0;
+
+  &-header {
+    position: absolute;
+    top: -.3rem;
+    left: 0;
+    padding: 0.05rem;
+    color: @icon-text-color;
+    font-size: @font-size-base;
+    background: @processing-color;
+    border-top-left-radius: 0.1rem;
+    border-bottom-right-radius: 0.1rem;
+  }
+
+  &-group {
+    position: relative;
+    margin-top: .3rem;
+    padding: 0.3rem .2rem;
+  }
+
+  &-dropdown {
+    display: inline-block;
+
+    &-menu {
+      max-height: 2rem;
+      overflow-y: auto;
+
+      .@{steps-prefix-cls}-item {
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    &-title {
+      position: relative;
+      display: inline-block;
+      padding-right: 0.16rem;
+      color: @text-color;
+      font-size: @font-size-lg;
+      line-height: @steps-icon-size;
+    }
+
+    .step-item-status(wait);
+    .step-item-status(process);
+  }
+
+  &-horizontal {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+}
+
+.@{steps-prefix-cls}-item {
+  position: relative;
+  display: inline-block;
+  flex: 1;
+  overflow: hidden;
+  vertical-align: top;
+  cursor: @steps-item-cursor;
+
+  &:last-child {
+    flex: none;
+  }
+
+  &:last-child &-tail,
+  &:last-child &-title::after {
+    display: none;
+  }
+
+  &-icon,
+  &-content {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  &-icon {
+    width: @steps-icon-size;
+    height: @steps-icon-size;
+    margin-right: 0.08rem;
+    color: @icon-text-color;
+    font-size: @steps-icon-font-size;
+    font-family: @font-family-no-number;
+    line-height: @steps-icon-size;
+    text-align: center;
+    border: @steps-icon-border-width @steps-icon-border-style @steps-icon-border-color;
+    border-radius: @steps-icon-size;
+    transition: background-color @animation-duration-slow, border-color @animation-duration-slow;
+
+    > .@{steps-prefix-cls}-icon {
+      position: relative;
+      top: -0.01rem;
+      line-height: 1;
+    }
+
+    span.@{iconfont-css-prefix} {
+      width: calc(@steps-icon-size - 2 * @steps-icon-border-width);
+      height: calc(@steps-icon-size - 2 * @steps-icon-border-width);
+      margin-right: 0;
+      line-height: calc(@steps-icon-size - 2 * @steps-icon-border-width);
+      vertical-align: initial;
+    }
+  }
+
+  &-tail {
+    position: absolute;
+    top: 0.12rem;
+    left: 0;
+    width: 100%;
+    padding: 0 0.1rem;
+
+    &::after {
+      display: inline-block;
+      width: 100%;
+      height: 0.01rem;
+      background: @step-border-color;
+      border-radius: 0.01rem;
+      transition: background @animation-duration-slow;
+      content: '';
+    }
+  }
+
+  &-title {
+    position: relative;
+    display: inline-block;
+    padding-right: 0.16rem;
+    color: @text-color;
+    font-size: @font-size-lg;
+    line-height: @steps-icon-size;
+
+    &::after {
+      position: absolute;
+      top: calc(@steps-icon-size / 2);
+      left: 100%;
+      display: block;
+      width: 99.99rem;
+      height: @steps-tail-size;
+      background: @wait-tail-color;
+      content: '';
+    }
+  }
+
+  &-description {
+    color: @text-color-secondary;
+    font-size: @font-size-base;
+  }
+
+  .step-item-status(wait);
+  .step-item-status(process);
+
+  &-process &-title {
+    font-weight: @process-title-font-weight;
+  }
+
+  &-dropdown-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: @steps-item-dropdown-icon-size;
+    height: @steps-item-dropdown-icon-size;
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: @btn-box-shadow;
+    }
+
+    .@{steps-prefix-cls}-icon {
+      font-size: @steps-item-dropdown-icon-font-size;
+    }
+  }
+
+  .step-item-status(finish);
+  .step-item-status(error);
+}
+
+.@{steps-prefix-cls}-navigation {
+  display: flex;
+  align-items: center;
+  width: auto;
+
+  &-container {
+    max-width: calc(100% - 0.3rem);
+    padding: 0.07rem 0.24rem;
+    overflow: scroll;
+    white-space: nowrap;
+
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .@{steps-prefix-cls}-item {
+
+
+    &-title {
+      display: flex;
+      padding-right: 0;
+
+      &-icon {
+        width: 0.14rem;
+        height: 0.14rem;
+        margin: @steps-item-title-icon-margin;
+        color: @wait-tail-color;
+        line-height: 1.5;
+      }
+    }
+  }
+}
+
+.@{steps-prefix-cls}-horizontal:not(.@{steps-prefix-cls}-label-vertical) {
+  .@{steps-prefix-cls}-item {
+    margin-right: 0.16rem;
+    white-space: nowrap;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &:last-child .@{steps-prefix-cls}-item-title {
+      padding-right: 0;
+    }
+
+    &-tail {
+      display: none;
+    }
+
+    &-description {
+      max-width: @steps-desciption-max-width;
+    }
+  }
+}
+
+.step-item-status(@status) {
+  @icon-color: '@{status}-icon-color';
+  @icon-hover-color: '@{status}-icon-hover-color';
+  @icon-bg: '@{status}-icon-bg';
+  @icon-dot-bg: '@{status}-icon-dot-bg';
+  @icon-border-color: '@{status}-icon-border-color';
+  @icon-hover-border-color: '@{status}-icon-hover-border-color';
+  @title-color: '@{status}-title-color';
+  @title-hover-color: '@{status}-title-hover-color';
+  @description-color: '@{status}-description-color';
+  @description-hover-color: '@{status}-description-hover-color';
+  @tail-color: '@{status}-tail-color';
+
+  &-@{status} &-icon {
+    color: @@icon-color;
+    background-color: @@icon-bg;
+    border-color: @@icon-border-color;
+
+    > .@{steps-prefix-cls}-icon {
+      .@{steps-prefix-cls}-icon-dot {
+        background-color: @@icon-dot-bg;
+      }
+    }
+  }
+
+  &-@{status}:hover &-icon {
+    color: @@icon-hover-color;
+    border-color: @@icon-hover-border-color;
+  }
+
+  &-@{status} > &-dropdown-title {
+    color: @@title-color;
+
+    &::after {
+      background-color: @@tail-color;
+    }
+  }
+
+  &-@{status} > &-content > &-title {
+    color: @@title-color;
+
+    &::after {
+      background-color: @@tail-color;
+    }
+  }
+
+  &-@{status} > &-content > &-description {
+    color: @@description-color;
+  }
+
+  &-@{status}:hover > &-content > &-title {
+    color: @@title-hover-color;
+  }
+
+  &-@{status}:hover > &-content > &-description {
+    color: @@description-hover-color;
+  }
+
+  &-@{status} > &-tail::after {
+    background-color: @@tail-color;
+  }
+}
+
+@import 'custom-icon';
+@import 'small';
+@import 'vertical';
+@import 'label-placement';
+@import 'progress-dot';

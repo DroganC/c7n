@@ -1,0 +1,144 @@
+@import '~codemirror/lib/codemirror.css';
+@import '~codemirror/theme/neat.css';
+@import '~codemirror/theme/material.css';
+@import '~codemirror/theme/idea.css';
+@import '../../../components/style/themes/default';
+@import "../../field/style/mixin";
+@import "../../text-field/style/mixin";
+
+.@{c7n-pro-prefix}-code-area {
+  height: auto !important;
+
+  &-wrapper {
+    position: relative;
+  }
+
+  &-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 0.28rem;
+    padding: 0.04rem 0.12rem;
+    background: @codearea-header-bg;
+    border-radius: 0.02rem 0.02rem 0 0;
+
+    &-title {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      color: @codearea-header-title-color;
+      font-weight: @codearea-header-title-font-weight;
+      font-size: @codearea-header-title-font-size;
+    }
+
+    div&-title:nth-last-child(2) {
+      padding-right: 0.6rem;
+    }
+
+    &-switch {
+      position: absolute;
+      right: 0.12rem;
+      .@{iconfont-css-prefix} {
+        color: @codearea-header-switch-icon-color;
+        font-size: 0.14rem;
+      }
+    }
+
+    &-dark {
+      background: @codearea-header-dark-bg;
+    }
+
+    &-dark &-title {
+      color: @codearea-header-title-dark-color;
+    }
+
+    &-dark &-switch {
+      .@{c7n-pro-prefix}-switch-label {
+        background: #5a5a5a;
+      }
+      .@{iconfont-css-prefix} {
+        color: #9c9c9c;
+      }
+    }
+  }
+
+  .CodeMirror {
+    display: block;
+    width: 100%;
+    border: @codearea-border;
+    border-radius: 0 0 0.02rem 0.02rem;
+
+    pre.CodeMirror-placeholder {
+      color: @input-placeholder-color;
+    }
+  }
+
+  &-dark {
+    .CodeMirror {
+      border: unset;
+    }
+  }
+
+  &:hover .CodeMirror {
+    border-color: @input-hover-border-color;
+  }
+
+  & .CodeMirror-focused {
+    border-color: @input-focus-border-color;
+    box-shadow: @input-active-box-shadow;
+  }
+
+  &-required-colors,
+  &-required-colors:hover {
+    .CodeMirror {
+      border-color: @input-required-border-color;
+    }
+  }
+
+  &-required-colors {
+    .CodeMirror-focused {
+      border-color: @input-required-border-color;
+      outline: 0;
+      box-shadow: @input-required-active-box-shadow;
+    }
+  }
+
+  &-invalid .CodeMirror,
+  &-invalid:hover .CodeMirror,
+  &-invalid .CodeMirror-focused {
+    border-color: @input-error-border-color;
+    box-shadow: @input-error-active-box-shadow;
+  }
+
+  .float-label(@input-prefix-width-base);
+  .float-label-input(@input-prefix-width-base);
+
+  &-float-label {
+    padding: .01rem;
+
+    &::before {
+      z-index: 7;
+      pointer-events: none;
+    }
+
+    .@{c7n-pro-prefix}-field-label-wrapper {
+      z-index: 7;
+      margin-left: 30px;
+    }
+  }
+
+  &-disabled .CodeMirror,
+  &-disabled:hover .CodeMirror,
+  &-disabled .CodeMirror-focused {
+    border-color: @input-border-color;
+    box-shadow: none;
+  }
+}
+
+// 处理 disabled 状态下无法复制的问题
+// 设置 disabled 状态，保持和 readOnly 效果一样，但隐藏了光标
+.@{c7n-pro-prefix}-code-area-disabled {
+  .CodeMirror-cursor {
+    display: none;
+  }
+}

@@ -1,0 +1,85 @@
+@import "../../../components/style/themes/default";
+@import "../../../components/style/mixins/index";
+
+@dropdown-prefix-cls: ~"@{c7n-pro-prefix}-dropdown";
+@dropdown-button-prefix-cls: ~"@{c7n-pro-prefix}-dropdown-button";
+@menu-prefix-cls: ~'@{c7n-prefix}-menu';
+
+.@{dropdown-prefix-cls}-popup {
+  // Dropdown 内部的 Menu 首级 Item 字体大小控制
+  .@{menu-prefix-cls}-root {
+    > .@{menu-prefix-cls}-item,
+    > .@{menu-prefix-cls}-submenu > .@{menu-prefix-cls}-submenu-title {
+      font-size: @dropdown-menu-first-level-title-font-size;
+    }
+  }
+
+  &.slide-down-enter.slide-down-enter-active&-placement-bottomLeft,
+  &.slide-down-appear.slide-down-appear-active&-placement-bottomLeft,
+  &.slide-down-enter.slide-down-enter-active&-placement-bottomCenter,
+  &.slide-down-appear.slide-down-appear-active&-placement-bottomCenter,
+  &.slide-down-enter.slide-down-enter-active&-placement-bottomRight,
+  &.slide-down-appear.slide-down-appear-active&-placement-bottomRight {
+    animation-name: antSlideUpIn;
+  }
+
+  &.slide-up-enter.slide-up-enter-active&-placement-topLeft,
+  &.slide-up-appear.slide-up-appear-active&-placement-topLeft,
+  &.slide-up-enter.slide-up-enter-active&-placement-topCenter,
+  &.slide-up-appear.slide-up-appear-active&-placement-topCenter,
+  &.slide-up-enter.slide-up-enter-active&-placement-topRight,
+  &.slide-up-appear.slide-up-appear-active&-placement-topRight {
+    animation-name: antSlideDownIn;
+  }
+
+  &.slide-down-leave.slide-down-leave-active&-placement-bottomLeft,
+  &.slide-down-leave.slide-down-leave-active&-placement-bottomCenter,
+  &.slide-down-leave.slide-down-leave-active&-placement-bottomRight {
+    animation-name: antSlideUpOut;
+  }
+
+  &.slide-up-leave.slide-up-leave-active&-placement-topLeft,
+  &.slide-up-leave.slide-up-leave-active&-placement-topCenter,
+  &.slide-up-leave.slide-up-leave-active&-placement-topRight {
+    animation-name: antSlideDownOut;
+  }
+}
+
+.@{dropdown-button-prefix-cls} {
+  border-radius: @btn-border-radius-base;
+
+  &-block {
+    display: flex;
+    > .@{c7n-pro-prefix}-btn:first-child {
+      flex: 1;
+    }
+  }
+
+  &-raised {
+    box-shadow: @btn-box-shadow;
+  }
+
+  > .@{c7n-pro-prefix}-btn {
+    border-radius: @btn-border-radius-base;
+    box-shadow: none;
+    &:first-child {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    &:last-child {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    &:not(.@{c7n-pro-prefix}-btn-disabled):not(.@{c7n-pro-prefix}-btn-loading):hover,
+    &:not(.@{c7n-pro-prefix}-btn-loading).@{c7n-pro-prefix}-btn-focused,
+    &:not(.@{c7n-pro-prefix}-btn-loading):focus {
+      z-index: 2;
+    }
+  }
+
+  .@{c7n-pro-prefix}-btn+.@{c7n-pro-prefix}-btn {
+    margin-left: @dropdown-button-group-spacing;
+  }
+}

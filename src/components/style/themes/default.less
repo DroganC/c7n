@@ -1,0 +1,23 @@
+// 须知：增加变量，需要同时在 defaultVars.less 和 variables.less 中增加
+
+@iconfont: ~'~choerodon-ui-font';
+/* stylelint-disable at-rule-empty-line-before,at-rule-name-space-after,at-rule-no-unknown */
+@import '@{iconfont}/style/theme';
+@import '../color/colors';
+
+// 以下内容如有修改，需同步修改 outer-scripts\utils.js
+// 以下被脚本替换
+@c7n-root-entry-name: defaultVars;
+// @c7n-root-entry-name: variables;
+
+.import-variables() when(@c7n-root-entry-name = variables) {
+  @import './variables.less';
+}
+
+.import-defaultVars() when not(@c7n-root-entry-name = variables) {
+  @import './defaultVars.less';
+}
+
+.import-variables();
+.import-defaultVars();
+// 以上被脚本替换

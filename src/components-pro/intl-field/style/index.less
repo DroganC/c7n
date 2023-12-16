@@ -1,0 +1,154 @@
+@import '../../../components/style/themes/default';
+@import '../../../components/style/mixins/index';
+
+@intl-prefix-input: ~'@{c7n-pro-prefix}-input';
+@intl-prefix-intl: ~'@{intl-prefix-input}-intl';
+@intl-prefix-textarea: ~'@{c7n-pro-prefix}-textarea';
+@intl-prefix-textarea-intl: ~'@{intl-prefix-textarea}-intl';
+.@{intl-prefix-input} {
+  &-suffix-button {
+    .@{intl-prefix-intl} {
+      &.icon-language {
+        color: @input-color;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.@{intl-prefix-textarea} {
+  &-suffix-button {
+    .@{intl-prefix-textarea-intl} {
+      &.icon-language {
+        color: @input-color;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+/* 多行 */
+.@{intl-prefix-textarea-intl} {
+  .@{intl-prefix-textarea} {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+
+    &-suffix {
+      position: relative;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      min-width: @input-suffix-width-base;
+      height: auto;
+      margin: 0;
+      border: @border-width-base none @input-border-color;
+      border-left: 0;
+      border-top-right-radius: @input-border-radius;
+      border-bottom-right-radius: @input-border-radius;
+    }
+
+    /* focus */
+    &:focus ~ .@{intl-prefix-textarea}-suffix {
+      border-color: @input-focus-border-color;
+      outline: 0;
+      box-shadow: @input-active-box-shadow;
+    }
+  }
+
+  label:hover .@{intl-prefix-textarea} ~ .@{intl-prefix-textarea}-suffix,
+  .@{intl-prefix-textarea}:hover ~ .@{intl-prefix-textarea}-suffix {
+    border-color: @input-hover-border-color;
+  }
+
+  /* 有border */
+  &.@{intl-prefix-textarea}-border {
+    .@{intl-prefix-textarea} {
+      &-suffix {
+        border-style: @border-style-base;
+      }
+    }
+  }
+
+  /* 必填 */
+  &.@{intl-prefix-textarea}-required-colors {
+    .@{intl-prefix-textarea} {
+      &-suffix {
+        border-color: @input-required-border-color;
+      }
+
+      &:hover ~ .@{intl-prefix-textarea}-suffix {
+        border-color: @input-required-hover-border-color;
+      }
+    }
+  }
+
+  &.@{intl-prefix-textarea}-required-colors:not(&-invalid) label:hover {
+    .@{intl-prefix-textarea}-suffix {
+      border-color: @input-required-hover-border-color;
+    }
+  }
+
+  /* focus */
+  &.@{intl-prefix-textarea}-focused {
+    .@{intl-prefix-textarea} {
+      &-suffix {
+        border-color: @input-focus-border-color;
+        outline: 0;
+        box-shadow: @input-active-box-shadow;
+      }
+    }
+  }
+
+  &.@{intl-prefix-textarea}-required-colors .@{intl-prefix-textarea}:focus ~ .@{intl-prefix-textarea}-suffix,
+  &.@{intl-prefix-textarea}-required-colors.@{intl-prefix-textarea}-focused .@{intl-prefix-textarea}-suffix {
+    border-color: @input-required-focus-border-color;
+    box-shadow: @input-required-active-box-shadow;
+  }
+
+  &.@{intl-prefix-textarea}-invalid .@{intl-prefix-textarea}:hover ~ .@{intl-prefix-textarea}-suffix {
+    border-color: @input-error-border-color;
+  }
+  &.@{intl-prefix-textarea}-invalid .@{intl-prefix-textarea}:focus ~ .@{intl-prefix-textarea}-suffix,
+  &.@{intl-prefix-textarea}-invalid.@{intl-prefix-textarea}-focused .@{intl-prefix-textarea}-suffix {
+    border-color: @input-error-border-color;
+    box-shadow: @input-error-active-box-shadow;
+  }
+
+  /* 校验失败 */
+  &.@{intl-prefix-textarea}-invalid,
+  &.@{intl-prefix-textarea}-invalid label:hover {
+    .@{intl-prefix-textarea}-suffix.@{intl-prefix-textarea}-suffix {
+      border-color: @input-error-border-color;
+    }
+  }
+
+  /* float label */
+  &.@{intl-prefix-textarea}-float-label {
+    .@{intl-prefix-textarea}-suffix {
+      border: none;
+    }
+  }
+
+  /* 禁用 */
+  &.@{intl-prefix-textarea}-disabled .@{intl-prefix-textarea},
+  &.@{intl-prefix-textarea}-disabled label:hover .@{intl-prefix-textarea},
+  & .@{intl-prefix-textarea}:disabled {
+    & ~ .@{intl-prefix-textarea}-suffix {
+      border-color: @input-border-color;
+    }
+  }
+}
+
+.@{c7n-pro-prefix}-output-intl-wrapper {
+  display: inline-flex;
+  align-items: center;
+
+  .@{c7n-pro-prefix}-output-suffix {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 0.24rem;
+    height: 0.2rem;
+    cursor: pointer;
+  }
+}
